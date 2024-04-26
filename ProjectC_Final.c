@@ -4,6 +4,7 @@
 This Code is for Finding Triangle in Graph.
 
 */
+//------------------------------------//
 
 
 #include <stdio.h>
@@ -13,7 +14,7 @@ struct Node    //Struct Node
 {
     int nodeid;
     int adjcount;
-    int adjs[10];
+    int adjs[10];    //Adding adjacent node id.
 };
 
 const int w = 3;
@@ -21,10 +22,8 @@ const int w = 3;
 int l = 0;
 int final[50][3];
 
-
-
+// Sorting Final Array Triangle.
 void sort(int final[][3],int l){
-    
     int totalP = l;
     for(int i = 0;i<totalP-1;i++){
         for(int j = i+1;j<totalP - 2;j++){
@@ -38,11 +37,9 @@ void sort(int final[][3],int l){
         }
     }
     
-
-    
-    
 }
 
+// Adding Node in the graph.
 int addNode(struct Node *p, int nid, int count)
 {
     int i = 0, ncount = count;
@@ -62,6 +59,7 @@ int addNode(struct Node *p, int nid, int count)
     return ncount;
 }
 
+// Adding Adjaceny Nodes.
 void addAdjacent(struct Node *p, int nid1, int nid2, int count)
 {
     int i = 0, index;
@@ -78,11 +76,9 @@ void addAdjacent(struct Node *p, int nid1, int nid2, int count)
 }
 
 
-
+// Checking is there have any graph or not .
 int Triangle(struct Node *p, int count, int node)
 {
-    
-    
     for (int i = 0; i < count; i++)
     {
         if (p[i].nodeid == node)
@@ -95,7 +91,6 @@ int Triangle(struct Node *p, int count, int node)
                     int adj2 = p[i].adjs[k];
 
                     // Check if adj1 and adj2 are connected
-
                     for (int m = 0; m < count; m++)
                     {
                         if (p[m].nodeid == adj1)
@@ -113,8 +108,6 @@ int Triangle(struct Node *p, int count, int node)
                                     final[l][1] = middle;
                                     final[l][2] = max;
                                     l++;
-                                    
-                                    
                                     //return 1;
                                 }
                             }
@@ -124,7 +117,6 @@ int Triangle(struct Node *p, int count, int node)
             }
         }
     }
-    
     return 0;
 }
 
@@ -134,7 +126,6 @@ int main()
     int nodecount = 0;
     int n1 = 0, n2 = 0;
     //int final[50][3];
-
 
     while (1)        // Take Nodes values
     {
@@ -157,7 +148,7 @@ int main()
         Triangle(nodes, nodecount, node);
     }
 
-    sort(final,l);
+    sort(final,l);    // Sorting final array.
 
     
 
