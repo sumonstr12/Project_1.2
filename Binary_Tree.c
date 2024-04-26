@@ -1,3 +1,7 @@
+//-------------------------------//
+//////// Creating Binary Tree /////
+//-------------------------------//
+
 #include <stdio.h>
 #include<stdlib.h>
 
@@ -7,7 +11,7 @@ struct Node
     struct Node * left, * right;
 };
 
-
+// Printing data in Preorder.
 void explore (struct Node * root)
 {
     if (root != NULL) {
@@ -17,10 +21,8 @@ void explore (struct Node * root)
     }
 }
 
-
+// Main Function
 int main() {
-    // Write C code here
-   
     int i=0, last = 0, current = 0;
     struct Node *root, *pleft, *pright, *list[2000];
     int n = 0;
@@ -42,7 +44,7 @@ int main() {
         if (current > last){
             break;
         }
-       
+       // Get value wether nodes data -99
         if (list[current]->value == -99){
             current++; continue;
         }
@@ -50,14 +52,14 @@ int main() {
         pleft = (struct Node *) malloc (sizeof (struct Node));
         pright = (struct Node *) malloc (sizeof (struct Node));
        
-        printf ("left of %d? ", list[current]->value);
+        printf ("left of %d? ", list[current]->value);    // Storing Left Node value in Binary Tree.
         scanf ("%d", &n);
 
         pleft->value = n;
         pleft->left = NULL;
         pleft->right = NULL;
        
-        printf ("right of %d? ", list[current]->value);
+        printf ("right of %d? ", list[current]->value);    // Storing Right Node value in Binary Tree.
         scanf ("%d", &n);
 
         pright->value = n;
@@ -82,7 +84,8 @@ int main() {
         last = last + 2;
         current++;
     }
-   
+
+    // Printing Data.
     explore (root);
    
     return 0;
