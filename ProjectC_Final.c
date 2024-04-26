@@ -1,7 +1,15 @@
+//-----------------------------------//
+/*
+    
+This Code is for Finding Triangle in Graph.
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node
+struct Node    //Struct Node
 {
     int nodeid;
     int adjcount;
@@ -128,7 +136,7 @@ int main()
     //int final[50][3];
 
 
-    while (1)
+    while (1)        // Take Nodes values
     {
         printf("Enter n1, n2 (-9 to exit): ");
         scanf("%d %d", &n1, &n2);
