@@ -10,27 +10,32 @@ This Code is for Finding Triangle in Graph.
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node    //Struct Node
+// Define a structure for graph nodes
+struct Node    
 {
     int nodeid;
-    int adjcount;
+    int adjcount;    //// Count of adjacent nodes
     int adjs[10];    //Adding adjacent node id.
 };
 
 const int w = 3;
 
-int l = 0;
-int final[50][3];
+int l = 0;    // Counter for the number of triangles found.
+int final[50][3];    // Array to store the triangles found
 
-// Sorting Final Array Triangle.
+// Function to sort the final array of triangles
 void sort(int final[][3],int l){
-    int totalP = l;
+    int totalP = l;    // Total number of triangles found
+
+    // Iterate through the list of triangles to remove duplicates and print them
     for(int i = 0;i<totalP-1;i++){
         for(int j = i+1;j<totalP - 2;j++){
             if(i!=j){
+                // If a duplicate triangle is found, skip it
                 if(final[i][0] == final[j][0] && final[i][1] == final[j][1] && final[i][2] == final[j][2]){
                     break;
                 }else{
+                    // Print the unique triangle
                     printf("%d - %d - %d \n",final[i][0],final[i][1],final[i][2]);
                 }
             }
@@ -43,6 +48,7 @@ void sort(int final[][3],int l){
 int addNode(struct Node *p, int nid, int count)
 {
     int i = 0, ncount = count;
+    // Check if the node already exists
     for (i = 0; i < count; i++)
     {
         if (p[i].nodeid == nid)
@@ -50,6 +56,7 @@ int addNode(struct Node *p, int nid, int count)
             break;
         }
     }
+    // If the node does not exist, add it
     if (i == count)
     {
         p[i].nodeid = nid;
@@ -76,13 +83,15 @@ void addAdjacent(struct Node *p, int nid1, int nid2, int count)
 }
 
 
-// Checking is there have any graph or not .
+// Checking is there have any Triangle or not .
 int Triangle(struct Node *p, int count, int node)
 {
+    // Iterate through each node
     for (int i = 0; i < count; i++)
     {
         if (p[i].nodeid == node)
         {
+            // Check each pair of adjacent nodes for a triangle
             for ( int j = 0; j < p[i].adjcount; j++)
             {
                 int adj1 = p[i].adjs[j];
@@ -99,11 +108,12 @@ int Triangle(struct Node *p, int count, int node)
                             {
                                 if (p[m].adjs[n] == adj2)
                                 {
-
+                                    // Determine the order of nodes in the triangle
                                     int min = (node < adj1) ? ((node < adj2) ? node : adj2) : ((adj1 < adj2) ?adj1 : adj2);
                                     int max = (node > adj1) ? ((node > adj2) ? node : adj2) : ((adj1 > adj2) ?adj1 : adj2);
                                     int middle = (node != min && node != max) ? node : (adj1 != min && adj1 != max) ? adj1 : adj2;
 
+                                    // Store the triangle in the final array
                                     final[l][0] = min;
                                     final[l][1] = middle;
                                     final[l][2] = max;
@@ -120,11 +130,12 @@ int Triangle(struct Node *p, int count, int node)
     return 0;
 }
 
+//Main Function.
 int main()
 {
-    struct Node nodes[50];
-    int nodecount = 0;
-    int n1 = 0, n2 = 0;
+    struct Node nodes[50];    // Array to store nodes
+    int nodecount = 0;    // Counter for the number of nodes
+    int n1 = 0, n2 = 0;    // Variables to store node ids
     //int final[50][3];
 
     while (1)        // Take Nodes values
