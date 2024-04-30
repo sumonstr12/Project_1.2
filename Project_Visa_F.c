@@ -7,15 +7,15 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-        
-struct Node     // Struct node
+// Define a struct to represent a node in the graph
+struct Node     
 {
     int nodeid;
-    int adjcount;
+    int adjcount;        // Number of adjacent nodes
     int adjs[10];       // How many nodes will be connected with one node.
 };
 
-int path = 1;
+int path = 1;        // Variable to keep track of the path number
 
 
 // checking Visa
